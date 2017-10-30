@@ -3,7 +3,7 @@
 //  Slider
 //
 //  Created by Dmitry Nesterenko on 19/10/2017.
-//  Copyright © 2017 Dmitry Nesterenko. All rights reserved.
+//  Copyright Ramotion Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
