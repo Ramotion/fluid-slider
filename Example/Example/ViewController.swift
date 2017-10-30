@@ -9,8 +9,9 @@
 import UIKit
 import Slider
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SliderDelegate {
 
+    @IBOutlet var label: UILabel!
     @IBOutlet var slider: Slider!
     
     override func viewDidLoad() {
@@ -26,7 +27,27 @@ class ViewController: UIViewController {
         slider.shadowColor = UIColor(white: 0, alpha: 0.1)
         slider.contentViewColor = UIColor(red: 78/255.0, green: 77/255.0, blue: 224/255.0, alpha: 1)
         slider.valueViewColor = .white
+        slider.delegate = self
     }
 
+    func sliderDidBeginInteraction(_ slider: Slider) {
+        setLabelHidden(true, animated: true)
+    }
+    
+    func sliderDidEndInteraction(_ slider: Slider) {
+        setLabelHidden(false, animated: true)
+    }
+    
+    private func setLabelHidden(_ hidden: Bool, animated: Bool) {
+        let animations = {
+            self.label.alpha = hidden ? 0 : 1
+        }
+        if animated {
+            UIView.animate(withDuration: 0.11, animations: animations)
+        } else {
+            animations()
+        }
+    }
+    
 }
 

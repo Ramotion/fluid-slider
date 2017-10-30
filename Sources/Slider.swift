@@ -25,16 +25,22 @@ private func isAnimationAllowed() -> Bool {
     return !isSimulator && !ProcessInfo.processInfo.isLowPowerModeEnabled && !UIAccessibilityIsReduceMotionEnabled() && !isUnderHighload
 }
 
+public protocol SliderDelegate : class {
+    func sliderDidBeginInteraction(_ slider: Slider)
+    func sliderDidEndInteraction(_ slider: Slider)
+}
+
 open class Slider : UIControl {
     
-    public var locale: Locale? {
+    open var locale: Locale? {
         didSet {
             setNeedsLayout()
         }
     }
 
+    open weak var delegate: SliderDelegate?
     private let contentView = UIView()
-
+    
     // MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -223,6 +229,7 @@ open class Slider : UIControl {
             self?.redrawFilterView()
         }
         sendActions(for: .valueChanged)
+        delegate?.sliderDidBeginInteraction(self)
         return result
     }
     
@@ -241,6 +248,7 @@ open class Slider : UIControl {
         valueView.animateTrackingEnd { [weak self] in
             self?.redrawFilterView()
         }
+        delegate?.sliderDidEndInteraction(self)
     }
     
     override open func cancelTracking(with event: UIEvent?) {
@@ -248,6 +256,7 @@ open class Slider : UIControl {
         valueView.animateTrackingEnd { [weak self] in
             self?.redrawFilterView()
         }
+        delegate?.sliderDidEndInteraction(self)
     }
     
     private func boundsForValueViewCenter() -> CGRect {
