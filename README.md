@@ -1,5 +1,7 @@
 # Fluid Slider
 
+A slider control inspired by [Virgil Pana](https://dribbble.com/shots/3868232-Fluid-Slider)
+
 ## Usage
 
 ### Slider
