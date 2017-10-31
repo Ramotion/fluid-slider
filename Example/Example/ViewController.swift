@@ -9,7 +9,7 @@
 import UIKit
 import Slider
 
-class ViewController: UIViewController, SliderDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet var label: UILabel!
     @IBOutlet var slider: Slider!
@@ -27,15 +27,12 @@ class ViewController: UIViewController, SliderDelegate {
         slider.shadowColor = UIColor(white: 0, alpha: 0.1)
         slider.contentViewColor = UIColor(red: 78/255.0, green: 77/255.0, blue: 224/255.0, alpha: 1)
         slider.valueViewColor = .white
-        slider.delegate = self
-    }
-
-    func sliderDidBeginInteraction(_ slider: Slider) {
-        setLabelHidden(true, animated: true)
-    }
-    
-    func sliderDidEndInteraction(_ slider: Slider) {
-        setLabelHidden(false, animated: true)
+        slider.didBeginTracking = { [weak self] _ in
+            self?.setLabelHidden(true, animated: true)
+        }
+        slider.didEndTracking = { [weak self] _ in
+            self?.setLabelHidden(false, animated: true)
+        }
     }
     
     private func setLabelHidden(_ hidden: Bool, animated: Bool) {

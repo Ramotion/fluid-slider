@@ -29,14 +29,12 @@ Since `Slider` is a subclass of `UIControl` class it inherits target-action mech
 ```swift
 slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
 ```
-### Delegate
+### Tracking Behavior
 
-A delegate can be assigned to perform user-defined actions at certain events:
+There are a couple of callbacks which allow you to listent to tracking events of the Slider:
 ```swift
-public protocol SliderDelegate : class {
-    func sliderDidBeginInteraction(_ slider: Slider)
-    func sliderDidEndInteraction(_ slider: Slider)
-}
+    var didBeginTracking: ((Slider) -> ())?
+    var didEndTracking: ((Slider) -> ())?
 ```
 
 ## Animation Performance
