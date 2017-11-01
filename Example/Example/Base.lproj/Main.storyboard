@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -19,6 +20,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26J-5w-SBc">
+                                <rect key="frame" x="16" y="243.5" width="343" height="54"/>
+                                <string key="text">If you know how many calories you ate use the slider below to add them to your daily diary without having to search the specific foods.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlG-BI-dyo" customClass="Slider" customModule="Slider">
                                 <rect key="frame" x="16" y="321.5" width="343" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -31,16 +38,21 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="BlG-BI-dyo" secondAttribute="trailing" id="4HA-D7-s4l"/>
                             <constraint firstItem="BlG-BI-dyo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerYWithinMargins" id="gMp-l4-NZA"/>
+                            <constraint firstItem="26J-5w-SBc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hoq-H8-M5b"/>
+                            <constraint firstItem="BlG-BI-dyo" firstAttribute="top" secondItem="26J-5w-SBc" secondAttribute="bottom" constant="24" id="izw-iy-Rv2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="26J-5w-SBc" secondAttribute="trailing" id="xkK-EP-ZPV"/>
                             <constraint firstItem="BlG-BI-dyo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zig-vm-6Zo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="label" destination="26J-5w-SBc" id="sYN-sj-4xR"/>
                         <outlet property="slider" destination="BlG-BI-dyo" id="siw-gJ-6ld"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

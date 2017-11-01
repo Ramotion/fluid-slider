@@ -3,7 +3,7 @@
 //  Fluid
 //
 //  Created by Dmitry Nesterenko on 16/10/2017.
-//  Copyright © 2017 Dmitry Nesterenko. All rights reserved.
+//  Copyright Ramotion Inc. All rights reserved.
 //
 
 import UIKit
@@ -27,14 +27,17 @@ private func isAnimationAllowed() -> Bool {
 
 open class Slider : UIControl {
     
-    public var locale: Locale? {
+    open var locale: Locale? {
         didSet {
             setNeedsLayout()
         }
     }
 
+    open var didBeginTracking: ((Slider) -> ())?
+    open var didEndTracking: ((Slider) -> ())?
+    
     private let contentView = UIView()
-
+    
     // MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -223,6 +226,7 @@ open class Slider : UIControl {
             self?.redrawFilterView()
         }
         sendActions(for: .valueChanged)
+        didBeginTracking?(self)
         return result
     }
     
@@ -241,6 +245,7 @@ open class Slider : UIControl {
         valueView.animateTrackingEnd { [weak self] in
             self?.redrawFilterView()
         }
+        didEndTracking?(self)
     }
     
     override open func cancelTracking(with event: UIEvent?) {
@@ -248,6 +253,7 @@ open class Slider : UIControl {
         valueView.animateTrackingEnd { [weak self] in
             self?.redrawFilterView()
         }
+        didEndTracking?(self)
     }
     
     private func boundsForValueViewCenter() -> CGRect {
