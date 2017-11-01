@@ -6,7 +6,7 @@ A slider control inspired by [Virgil Pana](https://dribbble.com/shots/3868232-Fl
 
 ### Slider
 
-Slider can be inserted in a view hierarchy as a subview. Appearance of the slider can be configrured with a number of public attributes:
+The slider can be inserted in a view hierarchy as a subview. Appearance can be configured with a number of public attributes:
 
 ```swift
 let slider = Slider()
@@ -23,15 +23,15 @@ slider.valueViewColor = .white
 view.addSubview(slider)
 ```
 
-Take a look at `Example` project for integration example.
+Take a look at the `Example` project for an integration example.
 
-Since `Slider` is a subclass of `UIControl` class it inherits target-action mechanics and It's possible to listen for user-triggered value changes:
+Since `Slider` is a subclass of `UIControl`, it inherits target-action mechanics and it's possible to listen for user-triggered value changes:
 ```swift
 slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
 ```
 ### Tracking Behavior
 
-There are a couple of callbacks which allow you to listent to tracking events of the Slider:
+There are a couple of callbacks which allow you to listen to the slider's tracking events:
 ```swift
     var didBeginTracking: ((Slider) -> ())?
     var didEndTracking: ((Slider) -> ())?
@@ -39,4 +39,4 @@ There are a couple of callbacks which allow you to listent to tracking events of
 
 ## Animation Performance
 
-This control is designed to use device CPU resources with care. The fluid-style animation will be disabled when low power mode is enabled or the system is under highload.
+This control is designed to use device CPU resources with care. The fluid-style animation will be disabled when low power mode is enabled or the system is under heavy load.
