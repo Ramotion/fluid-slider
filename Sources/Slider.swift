@@ -9,7 +9,7 @@
 import UIKit
 import CoreImage
 
-private let kContentViewMarginX: CGFloat = 8
+private let kContentViewMarginX: CGFloat = 10
 private let kContentViewCornerRadius: CGFloat = 8
 
 private func isAnimationAllowed() -> Bool {
