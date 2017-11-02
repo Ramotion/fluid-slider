@@ -63,6 +63,7 @@ open class Slider : UIControl {
         contentView.addSubview(minimumLabel)
         contentView.addSubview(maximumLabel)
         contentView.addSubview(valueView)
+        valueView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         valueView.isUserInteractionEnabled = false
         
         updateValueViewColor()
@@ -206,9 +207,9 @@ open class Slider : UIControl {
     }
     
     private func layoutValueView() {
-        let bounds = UIEdgeInsetsInsetRect(self.bounds, UIEdgeInsets(top: 0, left: kContentViewMarginX, bottom: 0, right: kContentViewMarginX))
+        let bounds = UIEdgeInsetsInsetRect(self.contentView.bounds, UIEdgeInsets(top: 0, left: kContentViewMarginX, bottom: 0, right: kContentViewMarginX))
         let centerX = (value - minimumValue) / (maximumValue - minimumValue) * bounds.size.width + bounds.minX
-        valueView.frame = valueViewFrame(forCenterX: centerX)
+        setValueViewPositionX(to: centerX)
     }
     
     private func valueViewFrame(forCenterX centerX: CGFloat) -> CGRect {
