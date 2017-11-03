@@ -75,7 +75,7 @@ class MetaballFilter : CIFilter {
         }
 
         // antialiasing
-        image = image?.applyingFilter("CIDiskBlur", parameters: [kCIInputRadiusKey: antialiasingRadius])
+//        image = image?.applyingFilter("CIDiskBlur", parameters: [kCIInputRadiusKey: antialiasingRadius])
 
         return image
     }
