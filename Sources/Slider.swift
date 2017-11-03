@@ -279,6 +279,7 @@ open class Slider : UIControl {
     private let filterView = UIImageView()
     private let filter = MetaballFilter()
     private var filterViewMask: UIImage?
+    private let context = CIContext()
     
     private func redrawFilterView() {
         guard isAnimationAllowed() else { return }
@@ -300,7 +301,7 @@ open class Slider : UIControl {
         filter.inputImage = CIImage(cgImage: inputImage.cgImage!)
         
         let outputImage = filter.outputImage!.cropped(to: CGRect(x: 0, y: 0, width: inputImage.size.width * scale, height: inputImage.size.height * scale))
-        let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent)!
+        let cgImage = context.createCGImage(outputImage, from: outputImage.extent)!
 
         filterView.image = UIImage(cgImage: cgImage, scale: scale, orientation: .up)
         filterView.frame = bounds
