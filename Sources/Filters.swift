@@ -9,12 +9,12 @@
 import UIKit
 import CoreImage
 
-@objc
+@objc(FLDThresholdFilter)
 class ThresholdFilter: CIFilter {
     
     private class Constructor : NSObject, CIFilterConstructor {
         func filter(withName name: String) -> CIFilter? {
-            if name == String(describing: ThresholdFilter.self) {
+            if name == "FLDThresholdFilter" {
                 return ThresholdFilter()
             }
             return nil
@@ -36,7 +36,7 @@ kernel vec4 thresholdFilter(__sample image, float threshold) {
     )
     
     class func register() {
-        CIFilter.registerName("ThresholdFilter", constructor: Constructor(), classAttributes: [:])
+        CIFilter.registerName("FLDThresholdFilter", constructor: Constructor(), classAttributes: [:])
     }
 
     override var outputImage : CIImage? {
