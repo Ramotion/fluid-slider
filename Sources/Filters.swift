@@ -9,12 +9,25 @@
 import UIKit
 import CoreImage
 
+@objc
 class ThresholdFilter: CIFilter {
     
+    private class Constructor : NSObject, CIFilterConstructor {
+        func filter(withName name: String) -> CIFilter? {
+            if name == String(describing: ThresholdFilter.self) {
+                return ThresholdFilter()
+            }
+            return nil
+        }
+    }
+    
+    @objc
     var inputImage : CIImage?
+    
+    @objc
     var threshold: CGFloat = 0.75
     
-    let filterKernel = CIColorKernel(source: """
+    private let filterKernel = CIColorKernel(source: """
 kernel vec4 thresholdFilter(__sample image, float threshold) {
     float luma = (image.r * 0.2126) + (image.g * 0.7152) + (image.b * 0.0722);
     return (luma > threshold) ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.0, 0.0, 0.0, 0.0);
@@ -22,6 +35,10 @@ kernel vec4 thresholdFilter(__sample image, float threshold) {
 """
     )
     
+    class func register() {
+        CIFilter.registerName("ThresholdFilter", constructor: Constructor(), classAttributes: [:])
+    }
+
     override var outputImage : CIImage? {
         guard let inputImage = inputImage, let filterKernel = filterKernel else { return nil }
         return filterKernel.apply(extent: inputImage.extent, arguments: [inputImage, threshold])
