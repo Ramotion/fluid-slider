@@ -9,7 +9,7 @@
 import UIKit
 import CoreImage
 
-private let kContentViewMarginX: CGFloat = 8
+private let kContentViewMarginX: CGFloat = 10
 private let kContentViewCornerRadius: CGFloat = 8
 
 private func isAnimationAllowed() -> Bool {
@@ -63,7 +63,11 @@ open class Slider : UIControl {
         contentView.addSubview(minimumLabel)
         contentView.addSubview(maximumLabel)
         contentView.addSubview(valueView)
+        valueView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         valueView.isUserInteractionEnabled = false
+        
+        setMinimumLabelAttributedText(NSAttributedString(string: "0"))
+        setMaximumLabelAttributedText(NSAttributedString(string: "1"))
         
         updateValueViewColor()
         updateValueViewText()
@@ -71,10 +75,18 @@ open class Slider : UIControl {
     
     // MARK: - Value
     
-    open var value: CGFloat = 0 {
+    open var fraction: CGFloat = 0 {
         didSet {
             updateValueViewText()
         }
+    }
+    
+    open var attributedTextForFraction: (CGFloat) -> (NSAttributedString) = { fraction in
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        formatter.maximumIntegerDigits = 0
+        let string = formatter.string(from: fraction as NSNumber) ?? ""
+        return NSAttributedString(string: string)
     }
     
     private let valueView = ValueView()
@@ -90,43 +102,24 @@ open class Slider : UIControl {
         valueView.innerFillColor = valueViewColor
     }
     
-    open var valueTextAttributes: [NSAttributedStringKey: Any]? {
-        didSet {
-            updateValueViewText()
-        }
-    }
-    
     private func updateValueViewText() {
-        let formatter = NumberFormatter()
-        formatter.locale = locale
-        if let string = formatter.string(from: value as NSNumber) {
-            valueView.attributedText = NSAttributedString(string: string, attributes: valueTextAttributes)
-        } else {
-            valueView.attributedText = nil
-        }
+        let text = attributedTextForFraction(fraction)
+        valueView.attributedText = text
     }
     
     // MARK: - Labels
 
-    open var minimumValue: CGFloat = 0 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-    
-    open var maximumValue: CGFloat = 1 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-    
     private let minimumLabel = UILabel()
     private let maximumLabel = UILabel()
+
+    open func setMinimumLabelAttributedText(_ attributedText: NSAttributedString?) {
+        minimumLabel.attributedText = attributedText
+        setNeedsLayout()
+    }
     
-    open var labelTextAttributes: [NSAttributedStringKey: Any]? {
-        didSet {
-            setNeedsLayout()
-        }
+    open func setMaximumLabelAttributedText(_ attributedText: NSAttributedString?) {
+        maximumLabel.attributedText = attributedText
+        setNeedsLayout()
     }
     
     // MARK: - Background Image
@@ -172,19 +165,6 @@ open class Slider : UIControl {
     }
     
     private func layoutLabelsText() {
-        let formatter = NumberFormatter()
-        formatter.locale = locale
-        if let string = formatter.string(from: minimumValue as NSNumber) {
-            minimumLabel.attributedText = NSAttributedString(string: string, attributes: labelTextAttributes)
-        } else {
-            minimumLabel.attributedText = nil
-        }
-        if let string = formatter.string(from: maximumValue as NSNumber) {
-            maximumLabel.attributedText = NSAttributedString(string: string, attributes: labelTextAttributes)
-        } else {
-            maximumLabel.attributedText = nil
-        }
-        
         minimumLabel.sizeToFit()
         minimumLabel.frame = CGRect(x: kContentViewMarginX, y: bounds.midY - minimumLabel.bounds.midY, width: minimumLabel.bounds.width, height: minimumLabel.bounds.height).integral
         
@@ -206,9 +186,9 @@ open class Slider : UIControl {
     }
     
     private func layoutValueView() {
-        let bounds = UIEdgeInsetsInsetRect(self.bounds, UIEdgeInsets(top: 0, left: kContentViewMarginX, bottom: 0, right: kContentViewMarginX))
-        let centerX = (value - minimumValue) / (maximumValue - minimumValue) * bounds.size.width + bounds.minX
-        valueView.frame = valueViewFrame(forCenterX: centerX)
+        let bounds = UIEdgeInsetsInsetRect(self.contentView.bounds, UIEdgeInsets(top: 0, left: kContentViewMarginX, bottom: 0, right: kContentViewMarginX))
+        let centerX = fraction * bounds.size.width + bounds.minX
+        setValueViewPositionX(to: centerX)
     }
     
     private func valueViewFrame(forCenterX centerX: CGFloat) -> CGRect {
@@ -221,7 +201,7 @@ open class Slider : UIControl {
         let result = super.beginTracking(touch, with: event)
         let x = touch.location(in: self).x
         setValueViewPositionX(to: x)
-        value = valueForPositionX(x)
+        fraction = fractionForPositionX(x)
         valueView.animateTrackingBegin { [weak self] in
             self?.redrawFilterView()
         }
@@ -234,7 +214,7 @@ open class Slider : UIControl {
         let result = super.continueTracking(touch, with: event)
         let x = touch.location(in: self).x
         setValueViewPositionX(to: x)
-        value = valueForPositionX(x)
+        fraction = fractionForPositionX(x)
         filterView.center.x = valueView.center.x
         sendActions(for: .valueChanged)
         return result
@@ -260,11 +240,10 @@ open class Slider : UIControl {
         return UIEdgeInsetsInsetRect(bounds, UIEdgeInsets(top: 0, left: kContentViewMarginX - ValueView.kLayoutMarginInset + valueView.bounds.midX, bottom: 0, right: kContentViewMarginX - ValueView.kLayoutMarginInset + valueView.bounds.midX))
     }
     
-    private func valueForPositionX(_ x: CGFloat) -> CGFloat {
+    private func fractionForPositionX(_ x: CGFloat) -> CGFloat {
         let centerBounds = boundsForValueViewCenter()
         let clampedX = x < centerBounds.minX ? centerBounds.minX : (centerBounds.maxX < x ? centerBounds.maxX : x)
-        let k = (clampedX - centerBounds.minX) / (centerBounds.maxX - centerBounds.minX)
-        return (maximumValue - minimumValue) * k + minimumValue
+        return (clampedX - centerBounds.minX) / (centerBounds.maxX - centerBounds.minX)
     }
     
     private func setValueViewPositionX(to x: CGFloat) {
@@ -278,6 +257,7 @@ open class Slider : UIControl {
     private let filterView = UIImageView()
     private let filter = MetaballFilter()
     private var filterViewMask: UIImage?
+    private let context = CIContext()
     
     private func redrawFilterView() {
         guard isAnimationAllowed() else { return }
@@ -299,7 +279,7 @@ open class Slider : UIControl {
         filter.inputImage = CIImage(cgImage: inputImage.cgImage!)
         
         let outputImage = filter.outputImage!.cropped(to: CGRect(x: 0, y: 0, width: inputImage.size.width * scale, height: inputImage.size.height * scale))
-        let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent)!
+        let cgImage = context.createCGImage(outputImage, from: outputImage.extent)!
 
         filterView.image = UIImage(cgImage: cgImage, scale: scale, orientation: .up)
         filterView.frame = bounds

@@ -99,7 +99,7 @@ class ValueView : UIView {
             animation.animationDidApplyBlock = { _ in
                 animationFrame()
             }
-            shapeView.layer.pop_add(animation, forKey: "up")
+            shapeView.layer.pop_add(animation, forKey: "bounce")
         }
     }
     
@@ -111,7 +111,7 @@ class ValueView : UIView {
             animation.animationDidApplyBlock = { _ in
                 animationFrame()
             }
-            shapeView.layer.pop_add(animation, forKey: "down")
+            shapeView.layer.pop_add(animation, forKey: "bounce")
         }
     }
     
