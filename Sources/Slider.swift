@@ -65,6 +65,7 @@ open class Slider : UIControl {
         contentView.addSubview(valueView)
         valueView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         valueView.isUserInteractionEnabled = false
+        valueView.animationFrame = redrawFilterView
         
         setMinimumLabelAttributedText(NSAttributedString(string: "0"))
         setMaximumLabelAttributedText(NSAttributedString(string: "1"))
@@ -202,9 +203,7 @@ open class Slider : UIControl {
         let x = touch.location(in: self).x
         setValueViewPositionX(to: x)
         fraction = fractionForPositionX(x)
-        valueView.animateTrackingBegin { [weak self] in
-            self?.redrawFilterView()
-        }
+        valueView.animateTrackingBegin()
         sendActions(for: .valueChanged)
         didBeginTracking?(self)
         return result
@@ -222,17 +221,13 @@ open class Slider : UIControl {
     
     override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
-        valueView.animateTrackingEnd { [weak self] in
-            self?.redrawFilterView()
-        }
+        valueView.animateTrackingEnd()
         didEndTracking?(self)
     }
     
     override open func cancelTracking(with event: UIEvent?) {
         super.cancelTracking(with: event)
-        valueView.animateTrackingEnd { [weak self] in
-            self?.redrawFilterView()
-        }
+        valueView.animateTrackingEnd()
         didEndTracking?(self)
     }
     
