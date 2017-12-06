@@ -20,6 +20,26 @@ The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=specia
 
 <a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=gthb-fluid-slider&mt=8" > <img src="https://github.com/Ramotion/navigation-stack/raw/master/Download_on_the_App_Store_Badge_US-UK_135x40.png" width="170" height="58"></a>
 
+
+## Installation
+You can install `fluid-slider` in several ways:
+
+- Add source files to your project.
+
+<br>
+
+- Use [CocoaPods](https://cocoapods.org):
+``` ruby
+pod 'fluid-slider'
+```
+
+<br>
+
+- Use [Carthage](https://github.com/Carthage/Carthage):
+```
+github "Ramotion/fluid-slider"
+```
+
 ## Usage
 
 ### Slider
