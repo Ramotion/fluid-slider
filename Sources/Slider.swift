@@ -258,7 +258,7 @@ open class Slider : UIControl {
         guard isAnimationAllowed() else { return }
         
         let scale = UIScreen.main.scale
-        let radius: CGFloat = 12
+        let radius: CGFloat = UIScreen.main.bounds.width >= 414 ? 18 : 12
         let bottomMargin: CGFloat = 10
         let offsetY = -contentView.bounds.height / 2
         let bounds = CGRect(x: valueView.frame.origin.x, y: offsetY, width: valueView.frame.size.width, height: -offsetY + bottomMargin).insetBy(dx: -radius, dy: 0)
