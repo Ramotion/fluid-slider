@@ -11,6 +11,8 @@ import CoreImage
 
 private let kContentViewMarginX: CGFloat = 10
 private let kContentViewCornerRadius: CGFloat = 8
+private let kBlurRadiusDefault: CGFloat = 12
+private let kBlurRadiusIphonePlus: CGFloat = 18 // blur a little bit more to avoid fluid disconnection effect
 
 private func isAnimationAllowed() -> Bool {
     let isUnderHighload: Bool
@@ -65,6 +67,7 @@ open class Slider : UIControl {
         contentView.addSubview(valueView)
         valueView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         valueView.isUserInteractionEnabled = false
+        valueView.animationFrame = redrawFilterView
         
         setMinimumLabelAttributedText(NSAttributedString(string: "0"))
         setMaximumLabelAttributedText(NSAttributedString(string: "1"))
@@ -202,9 +205,7 @@ open class Slider : UIControl {
         let x = touch.location(in: self).x
         setValueViewPositionX(to: x)
         fraction = fractionForPositionX(x)
-        valueView.animateTrackingBegin { [weak self] in
-            self?.redrawFilterView()
-        }
+        valueView.animateTrackingBegin()
         sendActions(for: .valueChanged)
         didBeginTracking?(self)
         return result
@@ -222,17 +223,13 @@ open class Slider : UIControl {
     
     override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
-        valueView.animateTrackingEnd { [weak self] in
-            self?.redrawFilterView()
-        }
+        valueView.animateTrackingEnd()
         didEndTracking?(self)
     }
     
     override open func cancelTracking(with event: UIEvent?) {
         super.cancelTracking(with: event)
-        valueView.animateTrackingEnd { [weak self] in
-            self?.redrawFilterView()
-        }
+        valueView.animateTrackingEnd()
         didEndTracking?(self)
     }
     
@@ -263,7 +260,7 @@ open class Slider : UIControl {
         guard isAnimationAllowed() else { return }
         
         let scale = UIScreen.main.scale
-        let radius: CGFloat = 12
+        let radius: CGFloat = UIScreen.main.bounds.width >= 414 ? kBlurRadiusIphonePlus : kBlurRadiusDefault
         let bottomMargin: CGFloat = 10
         let offsetY = -contentView.bounds.height / 2
         let bounds = CGRect(x: valueView.frame.origin.x, y: offsetY, width: valueView.frame.size.width, height: -offsetY + bottomMargin).insetBy(dx: -radius, dy: 0)

@@ -87,8 +87,9 @@ class ValueView : UIView {
     // MARK: - Animations
     
     private let shapeView = UIView()
+    public var animationFrame: (() -> ())?
     
-    func animateTrackingBegin(animationFrame: @escaping (() -> ())) {
+    func animateTrackingBegin() {
         let topY = -shapeView.bounds.height - 4
         
         if let animation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY) {
@@ -96,20 +97,20 @@ class ValueView : UIView {
             animation.springBounciness = 8
             animation.springSpeed = 15
             animation.removedOnCompletion = true
-            animation.animationDidApplyBlock = { _ in
-                animationFrame()
+            animation.animationDidApplyBlock = { [weak self] _ in
+                self?.animationFrame?()
             }
             shapeView.layer.pop_add(animation, forKey: "bounce")
         }
     }
     
-    func animateTrackingEnd(animationFrame: @escaping (() -> ())) {
+    func animateTrackingEnd() {
         if let animation = POPBasicAnimation(propertyNamed: kPOPLayerPositionY) {
             animation.toValue = shapeView.bounds.midY
             animation.removedOnCompletion = true
             animation.duration = 0.22
-            animation.animationDidApplyBlock = { _ in
-                animationFrame()
+            animation.animationDidApplyBlock = { [weak self] _ in
+                self?.animationFrame?()
             }
             shapeView.layer.pop_add(animation, forKey: "bounce")
         }
