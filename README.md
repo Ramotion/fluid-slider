@@ -20,9 +20,10 @@ The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=specia
 
 <a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=gthb-fluid-slider&mt=8" > <img src="https://github.com/Ramotion/navigation-stack/raw/master/Download_on_the_App_Store_Badge_US-UK_135x40.png" width="170" height="58"></a>
 
-##Requirements
-iOS 10.0 
-Xcode 9
+## Requirements
+
+iOS 10.0  
+Xcode 9    
 Swift 4.0
 
 ## Installation
