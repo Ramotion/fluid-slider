@@ -11,6 +11,8 @@ import CoreImage
 
 private let kContentViewMarginX: CGFloat = 10
 private let kContentViewCornerRadius: CGFloat = 8
+private let kBlurRadiusDefault: CGFloat = 12
+private let kBlurRadiusIphonePlus: CGFloat = 18 // blur a little bit more to avoid fluid disconnection effect
 
 private func isAnimationAllowed() -> Bool {
     let isUnderHighload: Bool
@@ -258,7 +260,7 @@ open class Slider : UIControl {
         guard isAnimationAllowed() else { return }
         
         let scale = UIScreen.main.scale
-        let radius: CGFloat = UIScreen.main.bounds.width >= 414 ? 18 : 12
+        let radius: CGFloat = UIScreen.main.bounds.width >= 414 ? kBlurRadiusIphonePlus : kBlurRadiusDefault
         let bottomMargin: CGFloat = 10
         let offsetY = -contentView.bounds.height / 2
         let bounds = CGRect(x: valueView.frame.origin.x, y: offsetY, width: valueView.frame.size.width, height: -offsetY + bottomMargin).insetBy(dx: -radius, dy: 0)
