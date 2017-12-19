@@ -79,6 +79,7 @@ open class Slider : UIControl {
     open var fraction: CGFloat = 0 {
         didSet {
             updateValueViewText()
+			layoutValueView()
         }
     }
     
@@ -222,7 +223,6 @@ open class Slider : UIControl {
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.beginTracking(touch, with: event)
         let x = touch.location(in: self).x
-        setValueViewPositionX(to: x)
         fraction = fractionForPositionX(x)
         valueView.animateTrackingBegin()
         sendActions(for: .valueChanged)
@@ -233,7 +233,6 @@ open class Slider : UIControl {
     override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.continueTracking(touch, with: event)
         let x = touch.location(in: self).x
-        setValueViewPositionX(to: x)
         fraction = fractionForPositionX(x)
         filterView.center.x = valueView.center.x
         sendActions(for: .valueChanged)
