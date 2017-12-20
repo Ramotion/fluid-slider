@@ -9,8 +9,6 @@
 import UIKit
 import CoreImage
 
-private let kContentViewMarginX: CGFloat = 10
-private let kContentViewCornerRadius: CGFloat = 8
 private let kBlurRadiusDefault: CGFloat = 12
 private let kBlurRadiusIphonePlus: CGFloat = 18 // blur a little bit more to avoid fluid disconnection effect
 
@@ -81,6 +79,7 @@ open class Slider : UIControl {
     open var fraction: CGFloat = 0 {
         didSet {
             updateValueViewText()
+			layoutValueView()
         }
     }
     
@@ -91,6 +90,15 @@ open class Slider : UIControl {
         let string = formatter.string(from: fraction as NSNumber) ?? ""
         return NSAttributedString(string: string)
     }
+
+	open var valueViewMargin: CGFloat = ValueView.kLayoutMarginInset {
+		didSet {
+			if valueViewMargin < ValueView.kLayoutMarginInset {
+				valueViewMargin = ValueView.kLayoutMarginInset
+			}
+			layoutValueView()
+		}
+	}
     
     private let valueView = ValueView()
     
@@ -115,6 +123,12 @@ open class Slider : UIControl {
     private let minimumLabel = UILabel()
     private let maximumLabel = UILabel()
 
+	open var labelsMargin: CGFloat = 10 {
+		didSet {
+			layoutLabelsText()
+		}
+	}
+
     open func setMinimumLabelAttributedText(_ attributedText: NSAttributedString?) {
         minimumLabel.attributedText = attributedText
         setNeedsLayout()
@@ -128,6 +142,12 @@ open class Slider : UIControl {
     // MARK: - Background Image
     
     private let backgroundImageView = UIImageView()
+
+	open var contentViewCornerRadius: CGFloat = 8 {
+		didSet {
+			layoutBackgroundImage()
+		}
+	}
     
     open var contentViewColor: UIColor? {
         didSet {
@@ -169,10 +189,10 @@ open class Slider : UIControl {
     
     private func layoutLabelsText() {
         minimumLabel.sizeToFit()
-        minimumLabel.frame = CGRect(x: kContentViewMarginX, y: bounds.midY - minimumLabel.bounds.midY, width: minimumLabel.bounds.width, height: minimumLabel.bounds.height).integral
+        minimumLabel.frame = CGRect(x: labelsMargin, y: bounds.midY - minimumLabel.bounds.midY, width: minimumLabel.bounds.width, height: minimumLabel.bounds.height).integral
         
         maximumLabel.sizeToFit()
-        maximumLabel.frame = CGRect(x: bounds.maxX - kContentViewMarginX - maximumLabel.bounds.width, y: bounds.midY - maximumLabel.bounds.midY, width: maximumLabel.bounds.width, height: maximumLabel.bounds.height).integral
+        maximumLabel.frame = CGRect(x: bounds.maxX - labelsMargin - maximumLabel.bounds.width, y: bounds.midY - maximumLabel.bounds.midY, width: maximumLabel.bounds.width, height: maximumLabel.bounds.height).integral
     }
     
     private func layoutBackgroundImage() {
@@ -184,12 +204,12 @@ open class Slider : UIControl {
             }
             contentViewColor?.setFill()
             let inset = UIEdgeInsets(top: inset.top * -1, left: inset.left * -1, bottom: inset.bottom * -1, right: inset.right * -1)
-            UIBezierPath(roundedRect: UIEdgeInsetsInsetRect(backgroundImageView.bounds, inset), cornerRadius: kContentViewCornerRadius).fill()
+            UIBezierPath(roundedRect: UIEdgeInsetsInsetRect(backgroundImageView.bounds, inset), cornerRadius: contentViewCornerRadius).fill()
         })
     }
     
     private func layoutValueView() {
-        let bounds = UIEdgeInsetsInsetRect(self.contentView.bounds, UIEdgeInsets(top: 0, left: kContentViewMarginX, bottom: 0, right: kContentViewMarginX))
+        let bounds = UIEdgeInsetsInsetRect(self.contentView.bounds, UIEdgeInsets(top: 0, left: valueViewMargin, bottom: 0, right: valueViewMargin))
         let centerX = fraction * bounds.size.width + bounds.minX
         setValueViewPositionX(to: centerX)
     }
@@ -203,7 +223,6 @@ open class Slider : UIControl {
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.beginTracking(touch, with: event)
         let x = touch.location(in: self).x
-        setValueViewPositionX(to: x)
         fraction = fractionForPositionX(x)
         valueView.animateTrackingBegin()
         sendActions(for: .valueChanged)
@@ -214,7 +233,6 @@ open class Slider : UIControl {
     override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.continueTracking(touch, with: event)
         let x = touch.location(in: self).x
-        setValueViewPositionX(to: x)
         fraction = fractionForPositionX(x)
         filterView.center.x = valueView.center.x
         sendActions(for: .valueChanged)
@@ -234,7 +252,7 @@ open class Slider : UIControl {
     }
     
     private func boundsForValueViewCenter() -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, UIEdgeInsets(top: 0, left: kContentViewMarginX - ValueView.kLayoutMarginInset + valueView.bounds.midX, bottom: 0, right: kContentViewMarginX - ValueView.kLayoutMarginInset + valueView.bounds.midX))
+        return UIEdgeInsetsInsetRect(bounds, UIEdgeInsets(top: 0, left: valueViewMargin - ValueView.kLayoutMarginInset + valueView.bounds.midX, bottom: 0, right: valueViewMargin - ValueView.kLayoutMarginInset + valueView.bounds.midX))
     }
     
     private func fractionForPositionX(_ x: CGFloat) -> CGFloat {
