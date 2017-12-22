@@ -121,6 +121,7 @@ open class Slider : UIControl {
         valueView.innerFillColor = valueViewColor
     }
 
+	var isAnimationEnabled = true
 	private(set) var isSliderTracking = false
     
     private func updateValueViewText() {
@@ -341,7 +342,7 @@ open class Slider : UIControl {
     private let context = CIContext()
     
     private func redrawFilterView() {
-        guard isAnimationAllowed() else { return }
+        guard isAnimationEnabled && isAnimationAllowed() else { return }
         
         let scale = UIScreen.main.scale
         let radius: CGFloat = UIScreen.main.bounds.width >= 414 ? kBlurRadiusIphonePlus : kBlurRadiusDefault
