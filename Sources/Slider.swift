@@ -60,6 +60,8 @@ open class Slider : UIControl {
         addSubview(contentView)
         
         contentView.addSubview(backgroundImageView)
+		contentView.addSubview(minimumImageView)
+		contentView.addSubview(maximumImageView)
         contentView.addSubview(minimumLabel)
         contentView.addSubview(maximumLabel)
         contentView.addSubview(valueView)
@@ -117,6 +119,34 @@ open class Slider : UIControl {
         let text = attributedTextForFraction(fraction)
         valueView.attributedText = text
     }
+
+	// MARK: - Images
+
+	private let minimumImageView = UIImageView()
+	private let maximumImageView = UIImageView()
+
+	open var imagesMargin: CGFloat = 10 {
+		didSet {
+			layoutImageViews()
+		}
+	}
+
+	open var imagesColor: UIColor? {
+		didSet {
+			minimumImageView.tintColor = imagesColor
+			maximumImageView.tintColor = imagesColor
+		}
+	}
+
+	open func setMinimumImage(_ image: UIImage?) {
+		minimumImageView.image = image?.withRenderingMode(.alwaysTemplate)
+		layoutImageViews()
+	}
+
+	open func setMaximumImage(_ image: UIImage?) {
+		maximumImageView.image = image?.withRenderingMode(.alwaysTemplate)
+		layoutImageViews()
+	}
     
     // MARK: - Labels
 
@@ -183,6 +213,7 @@ open class Slider : UIControl {
         filterView.mask?.frame = filterView.bounds
         
         layoutBackgroundImage()
+		layoutImageViews()
         layoutLabelsText()
         layoutValueView()
     }
@@ -194,6 +225,23 @@ open class Slider : UIControl {
         maximumLabel.sizeToFit()
         maximumLabel.frame = CGRect(x: bounds.maxX - labelsMargin - maximumLabel.bounds.width, y: bounds.midY - maximumLabel.bounds.midY, width: maximumLabel.bounds.width, height: maximumLabel.bounds.height).integral
     }
+
+	private func layoutImageViews() {
+		let imageInset = ValueView.kLayoutMarginInset * 2
+		let imageSize = CGSize(width: bounds.height - imageInset * 2, height: bounds.height - imageInset * 2)
+
+		minimumImageView.frame = CGRect(x: imagesMargin, y: imageInset, width: imageSize.width, height: imageSize.height).integral
+		minimumImageView.contentMode = .left
+		if let image = minimumImageView.image, image.size.width > minimumImageView.bounds.width || image.size.height > minimumImageView.bounds.height {
+			minimumImageView.contentMode = .scaleAspectFit
+		}
+
+		maximumImageView.frame = CGRect(x: bounds.maxX - imagesMargin - imageSize.width, y: imageInset, width: imageSize.width, height: imageSize.height).integral
+		maximumImageView.contentMode = .right
+		if let image = maximumImageView.image, image.size.width > maximumImageView.bounds.width || image.size.height > maximumImageView.bounds.height {
+			maximumImageView.contentMode = .scaleAspectFit
+		}
+	}
     
     private func layoutBackgroundImage() {
         let inset = UIEdgeInsets(top: min(0, shadowOffset.height - shadowBlur), left: min(0, shadowOffset.width - shadowBlur), bottom: max(0, shadowOffset.height + shadowBlur) * -1, right: max(0, shadowOffset.width + shadowBlur) * -1)
