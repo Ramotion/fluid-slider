@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -21,23 +21,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26J-5w-SBc">
-                                <rect key="frame" x="16" y="243.5" width="343" height="54"/>
+                                <rect key="frame" x="16" y="203.5" width="343" height="54"/>
                                 <string key="text">If you know how many calories you ate use the slider below to add them to your daily diary without having to search the specific foods.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlG-BI-dyo" customClass="Slider" customModule="Slider">
-                                <rect key="frame" x="16" y="321.5" width="343" height="44"/>
+                                <rect key="frame" x="16" y="281.5" width="343" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="xYl-Vg-d9W"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AY8-ee-HcY" customClass="Slider" customModule="Slider">
+                                <rect key="frame" x="16" y="395.5" width="343" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="VKG-sm-ddv"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="BlG-BI-dyo" secondAttribute="trailing" id="4HA-D7-s4l"/>
-                            <constraint firstItem="BlG-BI-dyo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerYWithinMargins" id="gMp-l4-NZA"/>
+                            <constraint firstItem="AY8-ee-HcY" firstAttribute="top" secondItem="BlG-BI-dyo" secondAttribute="bottom" constant="70" id="5VW-AC-mBt"/>
+                            <constraint firstItem="AY8-ee-HcY" firstAttribute="leading" secondItem="BlG-BI-dyo" secondAttribute="leading" id="SSJ-0e-5l7"/>
+                            <constraint firstItem="AY8-ee-HcY" firstAttribute="trailing" secondItem="BlG-BI-dyo" secondAttribute="trailing" id="Yvw-XF-Lbz"/>
+                            <constraint firstItem="BlG-BI-dyo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerYWithinMargins" constant="-40" id="gMp-l4-NZA"/>
                             <constraint firstItem="26J-5w-SBc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hoq-H8-M5b"/>
                             <constraint firstItem="BlG-BI-dyo" firstAttribute="top" secondItem="26J-5w-SBc" secondAttribute="bottom" constant="24" id="izw-iy-Rv2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="26J-5w-SBc" secondAttribute="trailing" id="xkK-EP-ZPV"/>
@@ -48,6 +58,7 @@
                     <connections>
                         <outlet property="label" destination="26J-5w-SBc" id="sYN-sj-4xR"/>
                         <outlet property="slider" destination="BlG-BI-dyo" id="siw-gJ-6ld"/>
+                        <outlet property="sliderWithImages" destination="AY8-ee-HcY" id="Ztl-5M-G82"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
