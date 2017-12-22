@@ -84,6 +84,12 @@ open class Slider : UIControl {
 			layoutValueView()
         }
     }
+
+	open var showFractionOnlyWhileTracking = false {
+		didSet {
+			updateValueViewText()
+		}
+	}
     
     open var attributedTextForFraction: (CGFloat) -> (NSAttributedString) = { fraction in
         let formatter = NumberFormatter()
@@ -114,10 +120,16 @@ open class Slider : UIControl {
         valueView.outerFillColor = contentViewColor
         valueView.innerFillColor = valueViewColor
     }
+
+	private(set) var isSliderTracking = false
     
     private func updateValueViewText() {
-        let text = attributedTextForFraction(fraction)
-        valueView.attributedText = text
+		if !showFractionOnlyWhileTracking || isSliderTracking {
+			let text = attributedTextForFraction(fraction)
+			valueView.attributedText = text
+		} else {
+			valueView.attributedText = nil
+		}
     }
 
 	// MARK: - Images
@@ -271,6 +283,7 @@ open class Slider : UIControl {
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.beginTracking(touch, with: event)
         let x = touch.location(in: self).x
+		isSliderTracking = true
         fraction = fractionForPositionX(x)
         valueView.animateTrackingBegin()
         sendActions(for: .valueChanged)
@@ -281,6 +294,7 @@ open class Slider : UIControl {
     override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.continueTracking(touch, with: event)
         let x = touch.location(in: self).x
+		isSliderTracking = true
         fraction = fractionForPositionX(x)
         filterView.center.x = valueView.center.x
         sendActions(for: .valueChanged)
@@ -289,13 +303,17 @@ open class Slider : UIControl {
     
     override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
+		isSliderTracking = false
         valueView.animateTrackingEnd()
+		updateValueViewText()
         didEndTracking?(self)
     }
     
     override open func cancelTracking(with event: UIEvent?) {
         super.cancelTracking(with: event)
+		isSliderTracking = false
         valueView.animateTrackingEnd()
+		updateValueViewText()
         didEndTracking?(self)
     }
     
