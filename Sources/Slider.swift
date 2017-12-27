@@ -60,6 +60,8 @@ open class Slider : UIControl {
         addSubview(contentView)
         
         contentView.addSubview(backgroundImageView)
+		contentView.addSubview(minimumImageView)
+		contentView.addSubview(maximumImageView)
         contentView.addSubview(minimumLabel)
         contentView.addSubview(maximumLabel)
         contentView.addSubview(valueView)
@@ -82,6 +84,12 @@ open class Slider : UIControl {
 			layoutValueView()
         }
     }
+
+	open var showFractionOnlyWhileTracking = false {
+		didSet {
+			updateValueViewText()
+		}
+	}
     
     open var attributedTextForFraction: (CGFloat) -> (NSAttributedString) = { fraction in
         let formatter = NumberFormatter()
@@ -112,11 +120,46 @@ open class Slider : UIControl {
         valueView.outerFillColor = contentViewColor
         valueView.innerFillColor = valueViewColor
     }
+
+	var isAnimationEnabled = true
+	private(set) var isSliderTracking = false
     
     private func updateValueViewText() {
-        let text = attributedTextForFraction(fraction)
-        valueView.attributedText = text
+		if !showFractionOnlyWhileTracking || isSliderTracking {
+			let text = attributedTextForFraction(fraction)
+			valueView.attributedText = text
+		} else {
+			valueView.attributedText = nil
+		}
     }
+
+	// MARK: - Images
+
+	private let minimumImageView = UIImageView()
+	private let maximumImageView = UIImageView()
+
+	open var imagesMargin: CGFloat = 10 {
+		didSet {
+			layoutImageViews()
+		}
+	}
+
+	open var imagesColor: UIColor? {
+		didSet {
+			minimumImageView.tintColor = imagesColor
+			maximumImageView.tintColor = imagesColor
+		}
+	}
+
+	open func setMinimumImage(_ image: UIImage?) {
+		minimumImageView.image = image?.withRenderingMode(.alwaysTemplate)
+		layoutImageViews()
+	}
+
+	open func setMaximumImage(_ image: UIImage?) {
+		maximumImageView.image = image?.withRenderingMode(.alwaysTemplate)
+		layoutImageViews()
+	}
     
     // MARK: - Labels
 
@@ -183,6 +226,7 @@ open class Slider : UIControl {
         filterView.mask?.frame = filterView.bounds
         
         layoutBackgroundImage()
+		layoutImageViews()
         layoutLabelsText()
         layoutValueView()
     }
@@ -194,6 +238,23 @@ open class Slider : UIControl {
         maximumLabel.sizeToFit()
         maximumLabel.frame = CGRect(x: bounds.maxX - labelsMargin - maximumLabel.bounds.width, y: bounds.midY - maximumLabel.bounds.midY, width: maximumLabel.bounds.width, height: maximumLabel.bounds.height).integral
     }
+
+	private func layoutImageViews() {
+		let imageInset = ValueView.kLayoutMarginInset * 2
+		let imageSize = CGSize(width: bounds.height - imageInset * 2, height: bounds.height - imageInset * 2)
+
+		minimumImageView.frame = CGRect(x: imagesMargin, y: imageInset, width: imageSize.width, height: imageSize.height).integral
+		minimumImageView.contentMode = .left
+		if let image = minimumImageView.image, image.size.width > minimumImageView.bounds.width || image.size.height > minimumImageView.bounds.height {
+			minimumImageView.contentMode = .scaleAspectFit
+		}
+
+		maximumImageView.frame = CGRect(x: bounds.maxX - imagesMargin - imageSize.width, y: imageInset, width: imageSize.width, height: imageSize.height).integral
+		maximumImageView.contentMode = .right
+		if let image = maximumImageView.image, image.size.width > maximumImageView.bounds.width || image.size.height > maximumImageView.bounds.height {
+			maximumImageView.contentMode = .scaleAspectFit
+		}
+	}
     
     private func layoutBackgroundImage() {
         let inset = UIEdgeInsets(top: min(0, shadowOffset.height - shadowBlur), left: min(0, shadowOffset.width - shadowBlur), bottom: max(0, shadowOffset.height + shadowBlur) * -1, right: max(0, shadowOffset.width + shadowBlur) * -1)
@@ -223,6 +284,7 @@ open class Slider : UIControl {
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.beginTracking(touch, with: event)
         let x = touch.location(in: self).x
+		isSliderTracking = true
         fraction = fractionForPositionX(x)
         valueView.animateTrackingBegin()
         sendActions(for: .valueChanged)
@@ -233,6 +295,7 @@ open class Slider : UIControl {
     override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let result = super.continueTracking(touch, with: event)
         let x = touch.location(in: self).x
+		isSliderTracking = true
         fraction = fractionForPositionX(x)
         filterView.center.x = valueView.center.x
         sendActions(for: .valueChanged)
@@ -241,13 +304,17 @@ open class Slider : UIControl {
     
     override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
+		isSliderTracking = false
         valueView.animateTrackingEnd()
+		updateValueViewText()
         didEndTracking?(self)
     }
     
     override open func cancelTracking(with event: UIEvent?) {
         super.cancelTracking(with: event)
+		isSliderTracking = false
         valueView.animateTrackingEnd()
+		updateValueViewText()
         didEndTracking?(self)
     }
     
@@ -275,7 +342,7 @@ open class Slider : UIControl {
     private let context = CIContext()
     
     private func redrawFilterView() {
-        guard isAnimationAllowed() else { return }
+        guard isAnimationEnabled && isAnimationAllowed() else { return }
         
         let scale = UIScreen.main.scale
         let radius: CGFloat = UIScreen.main.bounds.width >= 414 ? kBlurRadiusIphonePlus : kBlurRadiusDefault
