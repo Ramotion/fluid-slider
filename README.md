@@ -16,10 +16,6 @@ This project is maintained by Ramotion, Inc. We specialize in the designing and 
 
 The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=fluid-slider) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=fluid-slider).
 
-## Try this UI control in action
-
-<a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=gthb-fluid-slider&mt=8" > <img src="https://github.com/Ramotion/navigation-stack/raw/master/Download_on_the_App_Store_Badge_US-UK_135x40.png" width="170" height="58"></a>
-
 ## Requirements
 
 iOS 10.0  
@@ -91,7 +87,7 @@ This control is designed to use device CPU resources with care. The fluid-style 
 
 
 # Get the Showroom App for iOS to give it a try
-Try this UI component and more like this in our iOS app. Contact us if interested.
+Try our UI components in our iOS app. Contact us if interested.
 
 <a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=fluid-slider&mt=8" >
 <img src="https://github.com/ramotion/gliding-collection/raw/master/app_store@2x.png" width="117" height="34"></a>
