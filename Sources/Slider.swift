@@ -121,8 +121,8 @@ open class Slider : UIControl {
         valueView.innerFillColor = valueViewColor
     }
 
-	var isAnimationEnabled = true
-	private(set) var isSliderTracking = false
+	open var isAnimationEnabled = true
+	private(set) open var isSliderTracking = false
     
     private func updateValueViewText() {
 		if !showFractionOnlyWhileTracking || isSliderTracking {
