@@ -49,6 +49,10 @@ github "Ramotion/fluid-slider"
 
 ### Slider
 
+```swift
+import fluid_slider
+```
+
 The slider can be inserted in a view hierarchy as a subview. Appearance can be configured with a number of public attributes:
 
 ```swift
