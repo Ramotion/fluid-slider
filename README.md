@@ -1,5 +1,6 @@
 ![header](./header.png)
-![preview](./preview.gif)
+<img src="https://github.com/Ramotion/fluid-slider/blob/master/fluid-slider.gif" width="600" height="450" />
+<br><br/>
 
 # Fluid Slider
 [![Twitter](https://img.shields.io/badge/Twitter-@Ramotion-blue.svg?style=flat)](http://twitter.com/Ramotion)
