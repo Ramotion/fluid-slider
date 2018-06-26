@@ -96,6 +96,8 @@ There are a couple of callbacks which allow you to listen to the slider's tracki
 This control is designed to use device CPU resources with care. The fluid-style animation will be disabled when low power mode is enabled or the system is under heavy load.
 
 
+This library is a part of a <a href="https://github.com/Ramotion/swift-ui-animation-components-and-libraries"><b>selection of our best UI open-source projects.</b></a>
+
 # Get the Showroom App for iOS to give it a try
 Try our UI components in our iOS app. Contact us if interested.
 
