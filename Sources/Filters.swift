@@ -60,7 +60,7 @@ class MetaballFilter : CIFilter {
         guard let inputImage = inputImage else { return nil }
 
         // color
-        var image = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputBrightnessKey: 1, kCIInputSaturationKey: 0, kCIInputContrastKey: 0, kCIInputImageKey: inputImage])?.outputImage
+        var image = CIFilter(name: "CIColorControls", parameters: [kCIInputBrightnessKey: 1, kCIInputSaturationKey: 0, kCIInputContrastKey: 0, kCIInputImageKey: inputImage])?.outputImage
         
         // blur
         image = image?.applyingGaussianBlur(sigma: Double(blurRadius))

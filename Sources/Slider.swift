@@ -22,7 +22,7 @@ private func isAnimationAllowed() -> Bool {
     
     let isSimulator = TARGET_OS_SIMULATOR != 0
     
-    return !isSimulator && !ProcessInfo.processInfo.isLowPowerModeEnabled && !UIAccessibilityIsReduceMotionEnabled() && !isUnderHighload
+    return !isSimulator && !ProcessInfo.processInfo.isLowPowerModeEnabled && !UIAccessibility.isReduceMotionEnabled && !isUnderHighload
 }
 
 open class Slider : UIControl {
@@ -258,19 +258,19 @@ open class Slider : UIControl {
     
     private func layoutBackgroundImage() {
         let inset = UIEdgeInsets(top: min(0, shadowOffset.height - shadowBlur), left: min(0, shadowOffset.width - shadowBlur), bottom: max(0, shadowOffset.height + shadowBlur) * -1, right: max(0, shadowOffset.width + shadowBlur) * -1)
-        backgroundImageView.frame = UIEdgeInsetsInsetRect(self.bounds, inset)
+        backgroundImageView.frame = self.bounds.inset(by: inset)
         backgroundImageView.image = UIGraphicsImageRenderer(bounds: backgroundImageView.bounds).image(actions: { context in
             if let color = shadowColor {
                 context.cgContext.setShadow(offset: shadowOffset, blur: shadowBlur, color: color.cgColor)
             }
             contentViewColor?.setFill()
             let inset = UIEdgeInsets(top: inset.top * -1, left: inset.left * -1, bottom: inset.bottom * -1, right: inset.right * -1)
-            UIBezierPath(roundedRect: UIEdgeInsetsInsetRect(backgroundImageView.bounds, inset), cornerRadius: contentViewCornerRadius).fill()
+            UIBezierPath(roundedRect: backgroundImageView.bounds.inset(by: inset), cornerRadius: contentViewCornerRadius).fill()
         })
     }
     
     private func layoutValueView() {
-        let bounds = UIEdgeInsetsInsetRect(self.contentView.bounds, UIEdgeInsets(top: 0, left: valueViewMargin, bottom: 0, right: valueViewMargin))
+        let bounds = self.contentView.bounds.inset(by: UIEdgeInsets(top: 0, left: valueViewMargin, bottom: 0, right: valueViewMargin))
         let centerX = fraction * bounds.size.width + bounds.minX
         setValueViewPositionX(to: centerX)
     }
@@ -319,7 +319,7 @@ open class Slider : UIControl {
     }
     
     private func boundsForValueViewCenter() -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, UIEdgeInsets(top: 0, left: valueViewMargin - ValueView.kLayoutMarginInset + valueView.bounds.midX, bottom: 0, right: valueViewMargin - ValueView.kLayoutMarginInset + valueView.bounds.midX))
+        return bounds.inset(by: UIEdgeInsets(top: 0, left: valueViewMargin - ValueView.kLayoutMarginInset + valueView.bounds.midX, bottom: 0, right: valueViewMargin - ValueView.kLayoutMarginInset + valueView.bounds.midX))
     }
     
     private func fractionForPositionX(_ x: CGFloat) -> CGFloat {
