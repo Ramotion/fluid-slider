@@ -33,8 +33,8 @@ open class Slider : UIControl {
         }
     }
 
-    open var didBeginTracking: ((Slider) -> ())?
-    open var didEndTracking: ((Slider) -> ())?
+    @objc open var didBeginTracking: ((Slider) -> ())?
+    @objc open var didEndTracking: ((Slider) -> ())?
     
     private let contentView = UIView()
     
