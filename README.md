@@ -17,7 +17,7 @@ Inspired by [Virgil Pana](https://dribbble.com/virgilpana) [shot](https://dribbb
 **Looking for developers for your project?**<br>
 This project is maintained by Ramotion, Inc. We specialize in the designing and coding of custom UI for Mobile Apps and Websites.
 
-<a href="mailto:alex.a@ramotion.com?subject=Project%20inquiry%20from%20Github">
+<a href="https://dev.ramotion.com/gthbr">
 <img src="https://github.com/ramotion/gliding-collection/raw/master/contact_our_team@2x.png" width="187" height="34"></a> <br>
 
 The [iPhone mockup](https://store.ramotion.com/product/iphone-x-clay-mockups?utm_source=gthb&utm_medium=special&utm_campaign=fluid-slider) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=fluid-slider).
@@ -103,7 +103,7 @@ Try our UI components in our iOS app. Contact us if interested.
 
 <a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=fluid-slider&mt=8" >
 <img src="https://github.com/ramotion/gliding-collection/raw/master/app_store@2x.png" width="117" height="34"></a>
-<a href="mailto:alex.a@ramotion.com?subject=Project%20inquiry%20from%20Github">
+<a href="https://dev.ramotion.com/gthbr">
 <img src="https://github.com/ramotion/gliding-collection/raw/master/contact_our_team@2x.png" width="187" height="34"></a>
 <br>
 <br>
