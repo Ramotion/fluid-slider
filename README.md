@@ -98,6 +98,10 @@ This control is designed to use device CPU resources with care. The fluid-style 
 
 This library is a part of a <a href="https://github.com/Ramotion/swift-ui-animation-components-and-libraries"><b>selection of our best UI open-source projects.</b></a>
 
+## Third Party Bindings
+ ### React Native
+You may now use this library with [React Native](https://github.com/facebook/react-native) via the module [here](https://github.com/prscX/react-native-fluidic-slider)
+
 # Get the Showroom App for iOS to give it a try
 Try our UI components in our iOS app. Contact us if interested.
 
