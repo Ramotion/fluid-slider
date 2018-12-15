@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 
     @IBOutlet var label: UILabel!
     @IBOutlet var slider: Slider!
-	@IBOutlet var sliderWithImages: Slider!
+    @IBOutlet var sliderWithImages: Slider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,24 +41,24 @@ class ViewController: UIViewController {
             self?.setLabelHidden(false, animated: true)
         }
 
-		sliderWithImages.attributedTextForFraction = { fraction in
-			let formatter = NumberFormatter()
-			formatter.maximumIntegerDigits = 3
-			formatter.maximumFractionDigits = 0
-			let string = formatter.string(from: (fraction * 800 + 100) as NSNumber) ?? ""
-			return NSAttributedString(string: string, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black])
-		}
-		sliderWithImages.setMinimumImage(UIImage(named: "banana"))
-		sliderWithImages.setMaximumImage(UIImage(named: "cake"))
-		sliderWithImages.imagesColor = UIColor.white.withAlphaComponent(0.8)
-		sliderWithImages.setMinimumLabelAttributedText(NSAttributedString(string: "", attributes: labelTextAttributes))
-		sliderWithImages.setMaximumLabelAttributedText(NSAttributedString(string: "", attributes: labelTextAttributes))
-		sliderWithImages.fraction = 0.5
-		sliderWithImages.shadowOffset = CGSize(width: 0, height: 10)
-		sliderWithImages.shadowBlur = 5
-		sliderWithImages.shadowColor = UIColor(white: 0, alpha: 0.1)
-		sliderWithImages.contentViewColor = UIColor.purple
-		sliderWithImages.valueViewColor = .white
+        sliderWithImages.attributedTextForFraction = { fraction in
+            let formatter = NumberFormatter()
+            formatter.maximumIntegerDigits = 3
+            formatter.maximumFractionDigits = 0
+            let string = formatter.string(from: (fraction * 800 + 100) as NSNumber) ?? ""
+            return NSAttributedString(string: string, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black])
+        }
+        sliderWithImages.setMinimumImage(UIImage(named: "banana"))
+        sliderWithImages.setMaximumImage(UIImage(named: "cake"))
+        sliderWithImages.imagesColor = UIColor.white.withAlphaComponent(0.8)
+        sliderWithImages.setMinimumLabelAttributedText(NSAttributedString(string: "", attributes: labelTextAttributes))
+        sliderWithImages.setMaximumLabelAttributedText(NSAttributedString(string: "", attributes: labelTextAttributes))
+        sliderWithImages.fraction = 0.5
+        sliderWithImages.shadowOffset = CGSize(width: 0, height: 10)
+        sliderWithImages.shadowBlur = 5
+        sliderWithImages.shadowColor = UIColor(white: 0, alpha: 0.1)
+        sliderWithImages.contentViewColor = UIColor.purple
+        sliderWithImages.valueViewColor = .white
     }
     
     private func setLabelHidden(_ hidden: Bool, animated: Bool) {
