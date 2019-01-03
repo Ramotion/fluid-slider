@@ -132,6 +132,9 @@ open class Slider : UIControl {
 			valueView.attributedText = nil
 		}
     }
+    open func setValueViewText(text: NSAttributedString) {
+        valueView.attributedText = text
+    }
 
 	// MARK: - Images
 
@@ -259,14 +262,34 @@ open class Slider : UIControl {
     private func layoutBackgroundImage() {
         let inset = UIEdgeInsets(top: min(0, shadowOffset.height - shadowBlur), left: min(0, shadowOffset.width - shadowBlur), bottom: max(0, shadowOffset.height + shadowBlur) * -1, right: max(0, shadowOffset.width + shadowBlur) * -1)
         backgroundImageView.frame = self.bounds.inset(by: inset)
-        backgroundImageView.image = UIGraphicsImageRenderer(bounds: backgroundImageView.bounds).image(actions: { context in
-            if let color = shadowColor {
-                context.cgContext.setShadow(offset: shadowOffset, blur: shadowBlur, color: color.cgColor)
-            }
-            contentViewColor?.setFill()
-            let inset = UIEdgeInsets(top: inset.top * -1, left: inset.left * -1, bottom: inset.bottom * -1, right: inset.right * -1)
-            UIBezierPath(roundedRect: backgroundImageView.bounds.inset(by: inset), cornerRadius: contentViewCornerRadius).fill()
-        })
+        if #available(iOS 10.0, *) {
+            backgroundImageView.image = UIGraphicsImageRenderer(bounds: backgroundImageView.bounds).image(actions: { context in
+                if let color = shadowColor {
+                    context.cgContext.setShadow(offset: shadowOffset, blur: shadowBlur, color: color.cgColor)
+                }
+                contentViewColor?.setFill()
+                let inset = UIEdgeInsets(top: inset.top * -1, left: inset.left * -1, bottom: inset.bottom * -1, right: inset.right * -1)
+                UIBezierPath(roundedRect: backgroundImageView.bounds.inset(by: inset), cornerRadius: contentViewCornerRadius).fill()
+            })
+        } else {
+            // Fallback on earlier versions
+            backgroundImageView.image = imageDrawOnCanvas(bounds: backgroundImageView.bounds, actions: { context in
+                if let color = shadowColor {
+                    context.setShadow(offset: shadowOffset, blur: shadowBlur, color: color.cgColor)
+                }
+                contentViewColor?.setFill()
+                let inset = UIEdgeInsets(top: inset.top * -1, left: inset.left * -1, bottom: inset.bottom * -1, right: inset.right * -1)
+                UIBezierPath(roundedRect: backgroundImageView.bounds.inset(by: inset), cornerRadius: contentViewCornerRadius).fill()
+            })
+        }
+    }
+    private func imageDrawOnCanvas(bounds: CGRect, actions: (CGContext) -> Void) -> UIImage {
+        let drawSize = bounds.size
+        UIGraphicsBeginImageContext(drawSize)
+        let ctx = UIGraphicsGetCurrentContext()!
+        actions(ctx)
+        let img = UIGraphicsGetImageFromCurrentImageContext()!
+        return img
     }
     
     private func layoutValueView() {
@@ -350,8 +373,16 @@ open class Slider : UIControl {
         let offsetY = -contentView.bounds.height / 2
         let bounds = CGRect(x: valueView.frame.origin.x, y: offsetY, width: valueView.frame.size.width, height: -offsetY + bottomMargin).insetBy(dx: -radius, dy: 0)
 
-        let inputImage = UIGraphicsImageRenderer(bounds: bounds).image {
-            contentView.layer.render(in: $0.cgContext)
+        var inputImage: UIImage!
+        if #available(iOS 10.0, *) {
+            inputImage = UIGraphicsImageRenderer(bounds: bounds).image {
+                contentView.layer.render(in: $0.cgContext)
+            }
+        } else {
+            // Fallback on earlier versions
+            inputImage = imageDrawOnCanvas(bounds: bounds) {
+                contentView.layer.render(in: $0)
+            }
         }
         
         filter.blurRadius = radius
@@ -367,13 +398,23 @@ open class Slider : UIControl {
         filterView.frame = bounds
         
         if filterViewMask == nil {
-            let renderer = UIGraphicsImageRenderer(bounds: CGRect(origin: .zero, size: bounds.size))
-            filterViewMask = renderer.image(actions: { context in
-                UIColor.white.setFill()
-                context.fill(CGRect(origin: .zero, size: bounds.size))
-                context.cgContext.clear(CGRect(x: 0, y: bounds.size.height - bottomMargin, width: radius, height: bottomMargin))
-                context.cgContext.clear(CGRect(x: bounds.size.width - radius, y: bounds.size.height - bottomMargin, width: radius, height: bottomMargin))
-            })
+            if #available(iOS 10.0, *) {
+                let renderer = UIGraphicsImageRenderer(bounds: CGRect(origin: .zero, size: bounds.size))
+                filterViewMask = renderer.image(actions: { context in
+                    UIColor.white.setFill()
+                    context.fill(CGRect(origin: .zero, size: bounds.size))
+                    context.cgContext.clear(CGRect(x: 0, y: bounds.size.height - bottomMargin, width: radius, height: bottomMargin))
+                    context.cgContext.clear(CGRect(x: bounds.size.width - radius, y: bounds.size.height - bottomMargin, width: radius, height: bottomMargin))
+                })
+            } else {
+                // Fallback on earlier versions
+                filterViewMask = imageDrawOnCanvas(bounds: bounds, actions: { context in
+                    UIColor.white.setFill()
+                    context.fill(CGRect(origin: .zero, size: bounds.size))
+                    context.clear(CGRect(x: 0, y: bounds.size.height - bottomMargin, width: radius, height: bottomMargin))
+                    context.clear(CGRect(x: bounds.size.width - radius, y: bounds.size.height - bottomMargin, width: radius, height: bottomMargin))
+                })
+            }
             (filterView.mask as? UIImageView)?.image = filterViewMask
         }
     }

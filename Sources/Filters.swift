@@ -63,7 +63,16 @@ class MetaballFilter : CIFilter {
         var image = CIFilter(name: "CIColorControls", parameters: [kCIInputBrightnessKey: 1, kCIInputSaturationKey: 0, kCIInputContrastKey: 0, kCIInputImageKey: inputImage])?.outputImage
         
         // blur
-        image = image?.applyingGaussianBlur(sigma: Double(blurRadius))
+        if #available(iOS 10.0, *) {
+            image = image?.applyingGaussianBlur(sigma: Double(blurRadius))
+        } else {
+            // Fallback on earlier versions
+            if let blur = CIFilter(name: "CIGaussianBlur") {
+                blur.setValue(image!, forKey: kCIInputImageKey)
+                blur.setValue(blurRadius, forKey: kCIInputRadiusKey)
+                image = blur.value(forKey: kCIOutputImageKey) as? CIImage
+            }
+        }
         
         // threshold
         ThresholdFilter.register()

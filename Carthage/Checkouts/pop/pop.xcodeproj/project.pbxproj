@@ -95,6 +95,8 @@
 		0B6BE7DF19FFD92700762101 /* POPLayerExtras.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC94B07C17D95CAA003CE2C8 /* POPLayerExtras.mm */; };
 		0B6BE7E019FFD92800762101 /* POPMath.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC6465CF1794B4660014176F /* POPMath.mm */; };
 		0B6BE7E119FFD92800762101 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC70AC4218CCF4FC0067018C /* POPVector.mm */; };
+		0BB8E7B920A498AA00AAA7F1 /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = EC70AC4318CCF4FC0067018C /* POPVector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0BB8E7BA20A498C900AAA7F1 /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = EC70AC4318CCF4FC0067018C /* POPVector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		181893701B3B7763002C4A59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC5A887162FBD6200F7F15C /* QuartzCore.framework */; };
 		181893711B3B7767002C4A59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC5A89D162FBD9B00F7F15C /* CoreGraphics.framework */; };
 		181893721B3B776A002C4A59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC19121B162FB53A00E0CC76 /* Foundation.framework */; };
@@ -122,6 +124,7 @@
 		810EC69F1CE2E19C00BE2B9C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810EC69E1CE2E19C00BE2B9C /* QuartzCore.framework */; };
 		810EC6B71CE2E1BE00BE2B9C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810EC6B61CE2E1BE00BE2B9C /* CoreGraphics.framework */; };
 		810EC6C51CE2E1E000BE2B9C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810EC6C41CE2E1E000BE2B9C /* AppKit.framework */; };
+		816FEE211FFC68130069EF43 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B6BE74819FFD3B900762101 /* pop.framework */; };
 		90AA30B718988BBE00E3BDF7 /* POPSpringSolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 90AA30B618988BBE00E3BDF7 /* POPSpringSolver.h */; };
 		C6DB62F0D381303B499E49C7 /* libPods-Tests-pop-tests-tvos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62526242E5E68FDF16B4B25D /* libPods-Tests-pop-tests-tvos.a */; };
 		EC0AE13116BC73CE001DA2CE /* POPAnimationExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = EC0AE12F16BC73CE001DA2CE /* POPAnimationExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -182,8 +185,8 @@
 		EC6C098A19141BBD00F8EA96 /* POPBasicAnimationTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC6C098819141BBD00F8EA96 /* POPBasicAnimationTests.mm */; };
 		EC70AC4418CCF4FC0067018C /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC70AC4218CCF4FC0067018C /* POPVector.mm */; };
 		EC70AC4518CCF4FC0067018C /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC70AC4218CCF4FC0067018C /* POPVector.mm */; };
-		EC70AC4618CCF4FC0067018C /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = EC70AC4318CCF4FC0067018C /* POPVector.h */; };
-		EC70AC4718CCF4FC0067018C /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = EC70AC4318CCF4FC0067018C /* POPVector.h */; };
+		EC70AC4618CCF4FC0067018C /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = EC70AC4318CCF4FC0067018C /* POPVector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC70AC4718CCF4FC0067018C /* POPVector.h in Headers */ = {isa = PBXBuildFile; fileRef = EC70AC4318CCF4FC0067018C /* POPVector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EC72875518E13348006EEE54 /* POPCustomAnimationTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC72875418E13348006EEE54 /* POPCustomAnimationTests.mm */; };
 		EC72875618E13348006EEE54 /* POPCustomAnimationTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC72875418E13348006EEE54 /* POPCustomAnimationTests.mm */; };
 		EC7E31AB18C9419000B38170 /* POPAnimatable.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC99974A17568DAD00A73F49 /* POPAnimatable.mm */; };
@@ -251,7 +254,6 @@
 		ECDA0CCD18C92BD200D14897 /* POPSpringAnimationTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC6F55AA175E6B11008D995D /* POPSpringAnimationTests.mm */; };
 		ECDA0CCE18C92BD200D14897 /* POPEaseInEaseOutAnimationTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC7D2CFB1795AB3100E50A78 /* POPEaseInEaseOutAnimationTests.mm */; };
 		ECDA0CCF18C92C3E00D14897 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC5A887162FBD6200F7F15C /* QuartzCore.framework */; };
-		ECDA0CD018C92C4C00D14897 /* libpop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC191218162FB53A00E0CC76 /* libpop.a */; };
 		ECDA0CD118C92D3900D14897 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC5A89D162FBD9B00F7F15C /* CoreGraphics.framework */; };
 		ECF01ED518C92B7F009E0AD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC19121B162FB53A00E0CC76 /* Foundation.framework */; };
 		ECF01ED618C92B7F009E0AD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECEED93D18C91ACF00DD95F2 /* UIKit.framework */; };
@@ -265,19 +267,19 @@
 			remoteGlobalIDString = 0755AE4E1BEA15950094AB41;
 			remoteInfo = "pop-tvos-framework";
 		};
+		816FEE221FFC68370069EF43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC19120F162FB53A00E0CC76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B6BE74719FFD3B900762101;
+			remoteInfo = "pop-ios-framework";
+		};
 		EC7E31A418C93D6600B38170 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EC19120F162FB53A00E0CC76 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EC68857E18C7B60000C6194C;
 			remoteInfo = "POP-OSX";
-		};
-		ECF01EE018C92B80009E0AD1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EC19120F162FB53A00E0CC76 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC191217162FB53A00E0CC76;
-			remoteInfo = POP;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -493,8 +495,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				816FEE211FFC68130069EF43 /* pop.framework in Frameworks */,
 				ECDA0CD118C92D3900D14897 /* CoreGraphics.framework in Frameworks */,
-				ECDA0CD018C92C4C00D14897 /* libpop.a in Frameworks */,
 				ECDA0CCF18C92C3E00D14897 /* QuartzCore.framework in Frameworks */,
 				ECF01ED618C92B7F009E0AD1 /* UIKit.framework in Frameworks */,
 				ECF01ED518C92B7F009E0AD1 /* Foundation.framework in Frameworks */,
@@ -800,6 +802,7 @@
 				0755AE7E1BEA17D60094AB41 /* POPAnimatorPrivate.h in Headers */,
 				0755AE6A1BEA178B0094AB41 /* POPCustomAnimation.h in Headers */,
 				0755AE6B1BEA17930094AB41 /* POPDecayAnimation.h in Headers */,
+				0BB8E7BA20A498C900AAA7F1 /* POPVector.h in Headers */,
 				0755AE661BEA17670094AB41 /* POPAnimation.h in Headers */,
 				0755AE801BEA17EA0094AB41 /* POPDefines.h in Headers */,
 			);
@@ -825,6 +828,7 @@
 				0B6BE77019FFD46600762101 /* POPLayerExtras.h in Headers */,
 				0B6BE77219FFD47800762101 /* POPPropertyAnimation.h in Headers */,
 				0B6BE76F19FFD44000762101 /* POPSpringAnimation.h in Headers */,
+				0BB8E7B920A498AA00AAA7F1 /* POPVector.h in Headers */,
 				0B6BE77119FFD46F00762101 /* POPAnimatorPrivate.h in Headers */,
 				0B6BE77719FFD4A300762101 /* POPAnimationPrivate.h in Headers */,
 			);
@@ -851,12 +855,12 @@
 				EC67007218D3D89F00F7387F /* POPCGUtils.h in Headers */,
 				EC8F016218FFBE9D00DF8905 /* POPDecayAnimationInternal.h in Headers */,
 				EC0AE13116BC73CE001DA2CE /* POPAnimationExtras.h in Headers */,
+				EC70AC4618CCF4FC0067018C /* POPVector.h in Headers */,
 				EC91E96E18C014DE0025B8AD /* POPAction.h in Headers */,
 				90AA30B718988BBE00E3BDF7 /* POPSpringSolver.h in Headers */,
 				EC8F014618FFBC2D00DF8905 /* POPPropertyAnimationInternal.h in Headers */,
 				EC8F015C18FFBE8C00DF8905 /* POPDecayAnimation.h in Headers */,
 				EC91E96018C00EC90025B8AD /* POPDefines.h in Headers */,
-				EC70AC4618CCF4FC0067018C /* POPVector.h in Headers */,
 				EC9553901743E278001E6AF2 /* POPAnimationRuntime.h in Headers */,
 				EC6465D01794B4660014176F /* POPMath.h in Headers */,
 				EC8F016E18FFBEC200DF8905 /* POPSpringAnimationInternal.h in Headers */,
@@ -1043,7 +1047,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				ECF01EE118C92B80009E0AD1 /* PBXTargetDependency */,
+				816FEE231FFC68370069EF43 /* PBXTargetDependency */,
 			);
 			name = "pop-tests-ios";
 			productName = "pop-tests";
@@ -1057,7 +1061,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0700;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					0755AE4E1BEA15950094AB41 = {
@@ -1168,13 +1172,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tests-pop-tests-tvos-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		691A59DA7BDEDCB681FC9C87 /* [CP] Copy Pods Resources */ = {
@@ -1243,13 +1250,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tests-pop-tests-ios-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CFC3BF04D331650C5B4A16CC /* [CP] Embed Pods Frameworks */ = {
@@ -1273,13 +1283,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tests-pop-tests-osx-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1449,15 +1462,15 @@
 			target = 0755AE4E1BEA15950094AB41 /* pop-tvos-framework */;
 			targetProxy = 0755AE921BEA19580094AB41 /* PBXContainerItemProxy */;
 		};
+		816FEE231FFC68370069EF43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0B6BE74719FFD3B900762101 /* pop-ios-framework */;
+			targetProxy = 816FEE221FFC68370069EF43 /* PBXContainerItemProxy */;
+		};
 		EC7E31A518C93D6600B38170 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EC68857E18C7B60000C6194C /* pop-osx-framework */;
 			targetProxy = EC7E31A418C93D6600B38170 /* PBXContainerItemProxy */;
-		};
-		ECF01EE118C92B80009E0AD1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EC191217162FB53A00E0CC76 /* pop-ios-static */;
-			targetProxy = ECF01EE018C92B80009E0AD1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1468,14 +1481,13 @@
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-tvos-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-tvos-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "$(SRCROOT)/pop/module.modulemap";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/pop/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1485,14 +1497,13 @@
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-tvos-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-tvos-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "$(SRCROOT)/pop/module.modulemap";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/pop/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1502,14 +1513,13 @@
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-tvos-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-tvos-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "$(SRCROOT)/pop/module.modulemap";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/pop/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Profile;
 		};
@@ -1517,7 +1527,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 75AB0405A39E769FDEA67DFE /* Pods-Tests-pop-tests-tvos.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1542,13 +1551,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-tvos-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-tvos-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1556,7 +1564,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66F8502AAF59876387597FEC /* Pods-Tests-pop-tests-tvos.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1575,13 +1582,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-tvos-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-tvos-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1590,7 +1596,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 55EA9621113E7E17CB5A65C3 /* Pods-Tests-pop-tests-tvos.profile.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1609,13 +1614,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-tvos-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-tvos-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Profile;
@@ -1626,10 +1630,9 @@
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-ios-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-ios-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "$(SRCROOT)/pop/module.modulemap";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/pop/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = iphoneos;
@@ -1643,10 +1646,9 @@
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-ios-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-ios-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "$(SRCROOT)/pop/module.modulemap";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/pop/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = iphoneos;
@@ -1660,10 +1662,9 @@
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-ios-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-ios-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "$(SRCROOT)/pop/module.modulemap";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/pop/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = iphoneos;
@@ -1682,7 +1683,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC1DB1A18CA291B008C7DEA /* StaticLibrary.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "pop/pop-Info.plist";
 				PRODUCT_NAME = pop;
 				SDKROOT = iphoneos;
 			};
@@ -1706,7 +1706,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC1DB1A18CA291B008C7DEA /* StaticLibrary.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "pop/pop-Info.plist";
 				PRODUCT_NAME = pop;
 				SDKROOT = iphoneos;
 			};
@@ -1716,7 +1715,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC1DB1A18CA291B008C7DEA /* StaticLibrary.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "pop/pop-Info.plist";
 				PRODUCT_NAME = pop;
 				SDKROOT = iphoneos;
 			};
@@ -1727,9 +1725,8 @@
 			baseConfigurationReference = 04C0670F1B8D577C00ED0525 /* Framework.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-osx-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-osx-Info.plist";
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = macosx;
@@ -1741,9 +1738,8 @@
 			baseConfigurationReference = 04C0670F1B8D577C00ED0525 /* Framework.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-osx-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-osx-Info.plist";
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = macosx;
@@ -1755,9 +1751,8 @@
 			baseConfigurationReference = 04C0670F1B8D577C00ED0525 /* Framework.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/pop/pop-osx-Info.plist";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop/pop-osx-Info.plist";
 				INSTALL_PATH = "@rpath";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.pop;
 				PRODUCT_NAME = pop;
 				SDKROOT = macosx;
@@ -1774,9 +1769,9 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-osx-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-osx-Info.plist";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 				SDKROOT = macosx;
 			};
@@ -1792,8 +1787,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-osx-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-osx-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 				SDKROOT = macosx;
 			};
@@ -1809,8 +1804,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-osx-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-osx-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 				SDKROOT = macosx;
 			};
@@ -1825,9 +1820,10 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-ios-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-ios-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1840,9 +1836,10 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-ios-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-ios-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -1855,9 +1852,10 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/pop-tests/pop-tests-ios-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/pop-tests/pop-tests-ios-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
+				SDKROOT = iphoneos;
 			};
 			name = Profile;
 		};
