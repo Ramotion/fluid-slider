@@ -33,14 +33,14 @@ open class Slider : UIControl {
         }
     }
 
-    open var didBeginTracking: ((Slider) -> ())?
-    open var didEndTracking: ((Slider) -> ())?
+    @objc open var didBeginTracking: ((Slider) -> ())?
+    @objc open var didEndTracking: ((Slider) -> ())?
     
     private let contentView = UIView()
     
     // MARK: - Initialization
     
-    override init(frame: CGRect) {
+    @objc override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
     }
@@ -78,20 +78,20 @@ open class Slider : UIControl {
     
     // MARK: - Value
     
-    open var fraction: CGFloat = 0 {
+    @objc open var fraction: CGFloat = 0 {
         didSet {
             updateValueViewText()
 			layoutValueView()
         }
     }
 
-	open var showFractionOnlyWhileTracking = false {
+	@objc open var showFractionOnlyWhileTracking = false {
 		didSet {
 			updateValueViewText()
 		}
 	}
     
-    open var attributedTextForFraction: (CGFloat) -> (NSAttributedString) = { fraction in
+    @objc open var attributedTextForFraction: (CGFloat) -> (NSAttributedString) = { fraction in
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
         formatter.maximumIntegerDigits = 0
@@ -99,7 +99,7 @@ open class Slider : UIControl {
         return NSAttributedString(string: string)
     }
 
-	open var valueViewMargin: CGFloat = ValueView.kLayoutMarginInset {
+	@objc open var valueViewMargin: CGFloat = ValueView.kLayoutMarginInset {
 		didSet {
 			if valueViewMargin < ValueView.kLayoutMarginInset {
 				valueViewMargin = ValueView.kLayoutMarginInset
@@ -110,7 +110,7 @@ open class Slider : UIControl {
     
     private let valueView = ValueView()
     
-    open var valueViewColor: UIColor? {
+    @objc open var valueViewColor: UIColor? {
         didSet {
             updateValueViewColor()
         }
@@ -121,7 +121,7 @@ open class Slider : UIControl {
         valueView.innerFillColor = valueViewColor
     }
 
-	open var isAnimationEnabled = true
+	@objc open var isAnimationEnabled = true
 	private(set) open var isSliderTracking = false
     
     private func updateValueViewText() {
@@ -138,25 +138,25 @@ open class Slider : UIControl {
 	private let minimumImageView = UIImageView()
 	private let maximumImageView = UIImageView()
 
-	open var imagesMargin: CGFloat = 10 {
-		didSet {
+	@objc open var imagesMargin: CGFloat = 10 {
+	 	didSet {
 			layoutImageViews()
 		}
 	}
 
-	open var imagesColor: UIColor? {
+	@objc open var imagesColor: UIColor? {
 		didSet {
 			minimumImageView.tintColor = imagesColor
 			maximumImageView.tintColor = imagesColor
 		}
 	}
 
-	open func setMinimumImage(_ image: UIImage?) {
+	@objc open func setMinimumImage(_ image: UIImage?) {
 		minimumImageView.image = image?.withRenderingMode(.alwaysTemplate)
 		layoutImageViews()
 	}
 
-	open func setMaximumImage(_ image: UIImage?) {
+	@objc open func setMaximumImage(_ image: UIImage?) {
 		maximumImageView.image = image?.withRenderingMode(.alwaysTemplate)
 		layoutImageViews()
 	}
@@ -166,18 +166,18 @@ open class Slider : UIControl {
     private let minimumLabel = UILabel()
     private let maximumLabel = UILabel()
 
-	open var labelsMargin: CGFloat = 10 {
+	@objc open var labelsMargin: CGFloat = 10 {
 		didSet {
 			layoutLabelsText()
 		}
 	}
 
-    open func setMinimumLabelAttributedText(_ attributedText: NSAttributedString?) {
+    @objc open func setMinimumLabelAttributedText(_ attributedText: NSAttributedString?) {
         minimumLabel.attributedText = attributedText
         setNeedsLayout()
     }
     
-    open func setMaximumLabelAttributedText(_ attributedText: NSAttributedString?) {
+    @objc open func setMaximumLabelAttributedText(_ attributedText: NSAttributedString?) {
         maximumLabel.attributedText = attributedText
         setNeedsLayout()
     }
@@ -186,32 +186,32 @@ open class Slider : UIControl {
     
     private let backgroundImageView = UIImageView()
 
-	open var contentViewCornerRadius: CGFloat = 8 {
+	@objc open var contentViewCornerRadius: CGFloat = 8 {
 		didSet {
 			layoutBackgroundImage()
 		}
 	}
     
-    open var contentViewColor: UIColor? {
+    @objc open var contentViewColor: UIColor? {
         didSet {
             updateValueViewColor()
             setNeedsLayout()
         }
     }
     
-    open var shadowOffset: CGSize = .zero {
+    @objc open var shadowOffset: CGSize = .zero {
         didSet {
             setNeedsLayout()
         }
     }
 
-    open var shadowBlur: CGFloat = 0 {
+    @objc open var shadowBlur: CGFloat = 0 {
         didSet {
             setNeedsLayout()
         }
     }
     
-    open var shadowColor: UIColor? {
+    @objc open var shadowColor: UIColor? {
         didSet {
             setNeedsLayout()
         }
