@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'fluid-slider'
-  s.version      = '1.0.0'
+  s.version      = '1.0.1'
   s.summary      = 'A slider widget with a popup bubble displaying the precise value selected.'
   s.homepage     = 'https://github.com/Ramotion/fluid-slider'
   s.license      = 'MIT'
