@@ -40,7 +40,7 @@ open class Slider : UIControl {
     
     // MARK: - Initialization
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
     }
