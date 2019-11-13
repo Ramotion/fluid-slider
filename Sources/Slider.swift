@@ -355,7 +355,11 @@ open class Slider : UIControl {
         }
         
         filter.blurRadius = radius
-        filter.threshold = 0.49
+        if #available(iOS 13.0, *) {
+            filter.threshold = 0.7
+        } else {
+            filter.threshold = 0.45
+        }
         filter.backgroundColor = contentViewColor
         filter.antialiasingRadius = scale / 2
         filter.inputImage = CIImage(cgImage: inputImage.cgImage!)
