@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/Ramotion/fluid-slider'
   s.license      = 'MIT'
   s.authors = { 'Juri Vasylenko' => 'juri.v@ramotion.com' }
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '9.3'
   s.source       = { :git => 'https://github.com/Ramotion/fluid-slider.git', :tag => s.version.to_s }
   s.source_files  = 'Sources/*.swift'
   s.dependency 'pop'
