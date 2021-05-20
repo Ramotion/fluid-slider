@@ -11,7 +11,7 @@ import pop
 
 class ValueView : UIView {
 
-    static let kLayoutMarginInset: CGFloat = 4
+    static let kLayoutMarginInset: CGFloat = 1
     
     // MARK: - Initialization
     
@@ -54,6 +54,12 @@ class ValueView : UIView {
         }
     }
     
+    var textColor: UIColor? {
+        didSet {
+            textLabel.textColor = textColor
+        }
+    }
+    
     // MARK: - Text Label
     
     private let textLabel = UILabel()
@@ -63,17 +69,20 @@ class ValueView : UIView {
             return textLabel.attributedText
         }
         set {
-			if let newValue = newValue {
-				// apply centered horizontal alignment
-				let string = newValue.mutableCopy() as! NSMutableAttributedString
-				let paragraph = (string.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle ?? NSParagraphStyle()).mutableCopy() as! NSMutableParagraphStyle
-				paragraph.alignment = .center
-				string.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, string.length))
-				textLabel.attributedText = string
-			} else {
-				textLabel.attributedText = nil
-			}
-		}
+            if let newValue = newValue {
+                // apply centered horizontal alignment
+                let string = newValue.mutableCopy() as! NSMutableAttributedString
+                let paragraph = (string.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle ?? NSParagraphStyle()).mutableCopy() as! NSMutableParagraphStyle
+                paragraph.alignment = .center
+                string.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, string.length))
+                if let textColor = textColor {
+                    string.addAttribute(.foregroundColor, value: textColor, range: NSMakeRange(0, string.length))
+                }
+                textLabel.attributedText = string
+            } else {
+                textLabel.attributedText = nil
+            }
+        }
     }
     
     // MARK: - Laying out Subviews
@@ -119,5 +128,4 @@ class ValueView : UIView {
             shapeView.layer.pop_add(animation, forKey: "bounce")
         }
     }
-    
 }
