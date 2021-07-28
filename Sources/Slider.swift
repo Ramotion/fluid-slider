@@ -348,6 +348,8 @@ open class Slider : UIControl {
         updateValueViewText()
         didEndTracking?(self)
         updateValueViewColor()
+        updateValueViewBorderColor()
+        updateValueViewTextColor()
     }
     
     private func boundsForValueViewCenter() -> CGRect {
