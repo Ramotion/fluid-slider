@@ -222,7 +222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\necho $(SRCROOT)/../Carthage/Build/iOS/pop.framework";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\necho $(SRCROOT)/../Carthage/Build/iOS/pop.framework\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -383,7 +383,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34MUF9YXTA;
+				DEVELOPMENT_TEAM = J5C646D2T4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
@@ -403,7 +403,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34MUF9YXTA;
+				DEVELOPMENT_TEAM = J5C646D2T4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
